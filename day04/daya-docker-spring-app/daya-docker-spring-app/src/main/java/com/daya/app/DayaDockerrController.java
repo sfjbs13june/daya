@@ -10,4 +10,14 @@ public class DayaDockerrController {
     public String getName(){
         return "Dayanidhi";
     }
+
+    @GetMapping
+    public String getAge(){
+        return "75";
+    }
+
+    @GetMapping
+    public String getAddr(){
+        return "Bangalore";
+    }
 }
