@@ -49,7 +49,7 @@ public class HospitalControllerWebTests {
 
     @Test
     public void test_saveHospital() throws Exception {
-        Hospital hospital = new Hospital("hospital1", "Bangalore","101");
+        Hospital hospital = new Hospital("Manipal hospital", "Bangalore","77568");
         ResultActions resultActions = mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(hospital)).accept(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isOk());
@@ -57,36 +57,36 @@ public class HospitalControllerWebTests {
         assertNotNull(result_string);
         Gson g = new Gson();
         Hospital result = g.fromJson(result_string, Hospital.class);
-        assertEquals("hospital1", result.getHospital_name());
+        assertEquals("Manipal hospital", result.getHospital_name());
         assertEquals("Bangalore", result.getAddress());
-        assertEquals("101", result.getId());
+        assertEquals("77568", result.getId());
     }
 
     @Test
     public void test_readHospital() throws Exception {
-        Hospital hospital = new Hospital("hospital1", "Bangalore", "101");
+        Hospital hospital = new Hospital("Manipal hospital", "Bangalore", "77568");
         ResultActions resultActions_create = mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(hospital)).accept(MediaType.APPLICATION_JSON));
         resultActions_create.andExpect(status().isOk());
-        ResultActions resultActions = mockMvc.perform(get(read_url).param("hospital_name", "hospital1").accept(MediaType.APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(get(read_url).param("hospital_name", "Manipal hospital").accept(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isOk());
         String result_string = resultActions.andReturn().getResponse().getContentAsString();
         assertNotNull(result_string);
         Gson g = new Gson();
         Hospital result = g.fromJson(result_string, Hospital.class);
-        assertEquals("hospital1", result.getHospital_name());
+        assertEquals("Manipal hospital", result.getHospital_name());
         assertEquals("Bangalore", result.getAddress());
-        assertEquals("101", result.getId());
+        assertEquals("77568", result.getId());
     }
 
     @Test
     public void test_updateHospital() throws Exception {
-        Hospital hospital = new Hospital("hospital1", "Bangalore", "101");
+        Hospital hospital = new Hospital("Manipal hospital", "Bangalore", "77568");
         ResultActions resultActions_create = mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(hospital)).accept(MediaType.APPLICATION_JSON));
         resultActions_create.andExpect(status().isOk());
         ResultActions resultActions = mockMvc.perform(put(update_url)
-                .param("hospital_name", "hospital1")
+                .param("hospital_name", "Manipal hospital")
                 .param("address", "Delhi")
                 .accept(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isOk());
@@ -94,17 +94,17 @@ public class HospitalControllerWebTests {
         assertNotNull(result_string);
         Gson g = new Gson();
         Hospital result = g.fromJson(result_string, Hospital.class);
-        assertEquals("hospital1", result.getHospital_name());
+        assertEquals("Manipal hospital", result.getHospital_name());
         assertEquals("Delhi", result.getAddress());
-        assertEquals("101", result.getId());
+        assertEquals("77568", result.getId());
     }
 
     public void test_deleteHospital() throws Exception {
-        Hospital hospital = new Hospital("hospital1", "Bangalore", "101");
+        Hospital hospital = new Hospital("Manipal hospital", "Bangalore", "77568");
         ResultActions resultActions_create = mockMvc.perform(post(create_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(hospital)).accept(MediaType.APPLICATION_JSON));
         resultActions_create.andExpect(status().isOk());
-        ResultActions resultActions = mockMvc.perform(delete(delete_url).param("hospital_name", "hospital1").contentType(MediaType.APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(delete(delete_url).param("hospital_name", "Manipal hospital").contentType(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isOk());
         String result_string = resultActions.andReturn().getResponse().getContentAsString();
         assertNotNull(result_string);
@@ -115,7 +115,7 @@ public class HospitalControllerWebTests {
     }
     @Test
     public void test_savePatient() throws Exception {
-        Patient patient = new Patient("patient1", "1", "hospital1","Dengue fever");
+        Patient patient = new Patient("patient1", "1", "Manipal hospital","Dengue fever");
         ResultActions resultActions = mockMvc.perform(post(creatept_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
         resultActions.andExpect(status().isOk());
@@ -125,14 +125,14 @@ public class HospitalControllerWebTests {
         Patient result = g.fromJson(result_string, Patient.class);
         assertEquals("patient1", result.getPatient_name());
         assertEquals("1", result.getPatient_id());
-        assertEquals("hospital1", result.getHospital_name());
+        assertEquals("Manipal hospital", result.getHospital_name());
         assertEquals("Dengue fever", result.getDisease());
 
     }
 
     @Test
     public void test_readPatient() throws Exception {
-        Patient patient = new Patient("patient1", "1", "hospital1", "Dengue fever");
+        Patient patient = new Patient("patient1", "1", "Manipal hospital", "Dengue fever");
         ResultActions resultActions_create = mockMvc.perform(post(creatept_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
         resultActions_create.andExpect(status().isOk());
@@ -144,13 +144,13 @@ public class HospitalControllerWebTests {
         Patient result = g.fromJson(result_string, Patient.class);
         assertEquals("patient1", result.getPatient_name());
         assertEquals("1", result.getPatient_id());
-        assertEquals("hospital1", result.getHospital_name());
+        assertEquals("Manipal hospital", result.getHospital_name());
         assertEquals("Dengue fever", result.getDisease());
     }
 
     @Test
     public void test_updatePatient() throws Exception {
-        Patient patient = new Patient("patient1", "1", "hospital1","Dengue fever");
+        Patient patient = new Patient("patient1", "1", "Manipal hospital","Dengue fever");
         ResultActions resultActions_create = mockMvc.perform(post(creatept_url).contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(patient)).accept(MediaType.APPLICATION_JSON));
         resultActions_create.andExpect(status().isOk());
